@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./medicalImage.css";
 export default function MedicalImageAnalysis() {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState("");

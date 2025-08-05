@@ -1,110 +1,378 @@
-body {
+* {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f9fbfc;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #333;
+  overflow-x: hidden;
 }
 
 .content {
-  min-height: calc(100vh - 100px);
-  padding: 30px 60px;
+  min-height: calc(100vh - 140px);
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Hero Section (Home Page) */
+/* Hero Section */
 .hero {
   text-align: center;
-  margin-top: 40px;
+  margin: 60px 0;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(22, 242, 179, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
 }
 
 .hero h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #143e8f;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #16f2b3, #143e8f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  animation: fadeInUp 1s ease-out;
 }
 
 .hero p {
-  font-size: 1.1rem;
-  color: #666;
-  margin-bottom: 20px;
+  font-size: 1.3rem;
+  color: rgba(145, 237, 212, 0.9);
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
 }
 
-.hero button {
-  background: #00c389;
+.hero-button {
+  background: linear-gradient(135deg, #16f2b3, #00c389);
   color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 5px;
+  padding: 16px 40px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(22, 242, 179, 0.3);
+  text-decoration: none;
+  display: inline-block;
 }
 
-.hero button:hover {
-  background: #00a36b;
+.hero-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(22, 242, 179, 0.4);
 }
 
-/* Card Layout */
+/* Cards Layout */
 .cards {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 60px;
 }
 
 .card {
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  width: 250px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 40px 30px;
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(22, 242, 179, 0.1), transparent);
+  transition: left 0.6s;
+}
+
+.card:hover::before {
+  left: 100%;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .card h3 {
   color: #143e8f;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.card p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.card-button {
+  background: linear-gradient(135deg, #143e8f, #667eea);
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.card-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(20, 62, 143, 0.3);
 }
 
 /* Chat Box */
 .chat-box {
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
   margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.chat-box h2, .chat-box h3 {
+  color: #143e8f;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.chat-messages {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(249, 251, 252, 0.7);
+  border-radius: 15px;
+}
+
+.chat-input {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 15px 20px;
+  border: 2px solid rgba(22, 242, 179, 0.3);
+  border-radius: 25px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+.chat-input input:focus {
+  outline: none;
+  border-color: #16f2b3;
+  box-shadow: 0 0 0 3px rgba(22, 242, 179, 0.1);
+}
+
+.chat-button {
+  background: linear-gradient(135deg, #16f2b3, #00c389);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.chat-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(22, 242, 179, 0.3);
 }
 
 /* 3D Model Container */
 .model-container {
   width: 100%;
-  height: 500px;
-  background: #f4f4f4;
-  border-radius: 10px;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 600px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
 }
 
-/* File Upload */
+/* Upload Section */
 .upload-section {
   text-align: center;
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 50px 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.upload-section h2 {
+  color: #143e8f;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.upload-section input[type="file"] {
+  margin: 30px 0;
+  padding: 15px;
+  border: 2px dashed #16f2b3;
+  border-radius: 15px;
+  background: rgba(22, 242, 179, 0.05);
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-section input[type="file"]:hover {
+  background: rgba(22, 242, 179, 0.1);
+  border-color: #00c389;
 }
 
 /* Organ Info Panel */
 .organ-info {
   position: absolute;
-  right: 40px;
-  top: 120px;
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 250px;
+  right: 30px;
+  top: 50px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.organ-info h3 {
+  color: #143e8f;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* About Page */
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 50px 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.about-container h2 {
+  color: #143e8f;
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.about-container p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #555;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.team {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.team-card {
+  background: rgba(249, 251, 252, 0.8);
+  padding: 30px 25px;
+  border-radius: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(22, 242, 179, 0.2);
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-color: #16f2b3;
+}
+
+.team-card h4 {
+  color: #143e8f;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .content {
+    padding: 20px 15px;
+  }
+  
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .organ-info {
+    position: relative;
+    right: auto;
+    top: auto;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .about-container {
+    padding: 30px 25px;
+  }
 }
